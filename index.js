@@ -12,6 +12,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // ----------------- Router ---------------------------------- //
 
 app.get("/call", function (req, res) {
+	console.log(req)
+	console.log("KKK")
 	let SSCO = {
 		SSCO: [
 			{
@@ -39,7 +41,7 @@ app.get("/call", function (req, res) {
 	res.send(SSCO);
 });
 
-app.listen(process.env.PORT || 3000, () =>
+app.listen(process.env.PORT || 3000, '127.0.0.1', () =>
 	console.log("Server is listenning in port 3000")
 );
 module.exports = app;
