@@ -12,13 +12,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // ----------------- Router ---------------------------------- //
 
 app.get("/call", function (req, res) {
-	console.log(req)
-	console.log("KKK")
-	let SSCO = {
-		SSCO: [
+	date = new Date()
+	console.log(date.toLocaleString("vi-GB", { timeZone: "Asia/Ho_Chi_Minh" }) + " Call request")
+	console.log(req.query)
+	let SSCO =
+		[
 			{
 				action: "record",
-				eventUrl: "https://example.com/recording",
+				eventUrl: "http://202.191.56.251:3000/event",
 				format: "mp3",
 			},
 			{
@@ -26,22 +27,35 @@ app.get("/call", function (req, res) {
 
 				from: {
 					type: "internal",
-					number: "user_1",
+					number: req.query.from,
 					alias: "user_1",
 				},
 
 				to: {
 					type: "external",
-					number: "phone_number",
+					number: req.query.to,
 					alias: "phone_number",
 				},
 			},
-		],
-	};
+		]
+	;
 	res.send(SSCO);
 });
 
-app.listen(process.env.PORT || 3000, '127.0.0.1', () =>
+app.get("/event", function(req, res){
+	date = new Date()
+	console.log(date.toLocaleString("vi-GB", { timeZone: "Asia/Ho_Chi_Minh" }) + " Call event get")
+	console.log(req.query)
+});
+app.post("/event", function(req, res){
+	date = new Date()
+	console.log(date.toLocaleString("vi-GB", { timeZone: "Asia/Ho_Chi_Minh" }) + " Call event post")
+	console.log(req.body)
+	
+});
+
+
+app.listen(process.env.PORT || 3000,  () =>
 	console.log("Server is listenning in port 3000")
 );
 module.exports = app;
