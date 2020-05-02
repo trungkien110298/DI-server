@@ -11,6 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // ----------------- Router ---------------------------------- //
 
+
+// Answer URL
 app.get("/call", function (req, res) {
 	date = new Date()
 	console.log(date.toLocaleString("vi-GB", { timeZone: "Asia/Ho_Chi_Minh" }) + " Call request")
@@ -38,24 +40,41 @@ app.get("/call", function (req, res) {
 				},
 			},
 		]
-	;
+		;
 	res.send(SSCO);
+	console.log('\n\n')
 });
 
-app.get("/event", function(req, res){
-	date = new Date()
-	console.log(date.toLocaleString("vi-GB", { timeZone: "Asia/Ho_Chi_Minh" }) + " Call event get")
-	console.log(req.query)
-});
-app.post("/event", function(req, res){
+
+// Event URL
+app.post("/event", function (req, res) {
 	date = new Date()
 	console.log(date.toLocaleString("vi-GB", { timeZone: "Asia/Ho_Chi_Minh" }) + " Call event post")
 	console.log(req.body)
-	
+	console.log('\n\n')
+
 });
 
 
-app.listen(process.env.PORT || 3000,  () =>
+// Call center Event URL
+app.post("/call-event", function (req, res) {
+	date = new Date()
+	console.log(date.toLocaleString("vi-GB", { timeZone: "Asia/Ho_Chi_Minh" }) + " Call event post")
+	console.log(req.body)
+	console.log('\n\n')
+
+});
+
+// Call center call Answer URL
+app.post("/callout-event", function (req, res) {
+	date = new Date()
+	console.log(date.toLocaleString("vi-GB", { timeZone: "Asia/Ho_Chi_Minh" }) + " Call out event post")
+	console.log(req.body)
+	console.log('\n\n')
+
+});
+
+app.listen(process.env.PORT || 3000, () =>
 	console.log("Server is listenning in port 3000")
 );
 module.exports = app;
