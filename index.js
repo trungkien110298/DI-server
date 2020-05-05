@@ -1,6 +1,9 @@
 // Rerquire Node JS module
 var express = require("express");
 var bodyParser = require("body-parser");
+var path = require('path');
+var cons = require('consolidate');
+
 
 // Creat server app
 var app = express();
@@ -9,8 +12,17 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// View engine setup
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
+app.set("views", "./views");
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 // ----------------- Router ---------------------------------- //
 
+var list_call = require('./routes/list_call');
+app.use(list_call);
 
 // Answer URL
 app.get("/call", function (req, res) {

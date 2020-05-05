@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Language" content="en">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Data Inside</title>
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+  <meta name="description" content="This is an example dashboard created using build-in elements and components.">
+  <meta name="msapplication-tap-highlight" content="no">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Start</th>
+              <th scope="col">Answer</th>
+              <th scope="col">Stop</th>
+              <th scope="col">From</th>
+              <th scope="col">To</th>
+              <th scope="col">File</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% calls.forEach(function(call, index){ %>
+            <tr>
+              <td scope="row"><%= index+1 %></td>
+              <td><%= call.start_time_datetime %></td>
+              <td><%= call.answer_time_datetime %></td>
+              <td><%= call.stop_time_datetime %></td>
+              <td><%= call.from_number %></td>
+              <td><%= call.to_number %></td>
+              <td>
+                <audio controls>
+                  <source src="http://api.stringee.com/v1/call/play/<%= call.id %>?access_token=eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTS1dpNGpRbDZpcXpNeXp5VjVrV1lDNGtBZjRnUjFJNnBGLTE1ODg2MTY3OTIiLCJpc3MiOiJTS1dpNGpRbDZpcXpNeXp5VjVrV1lDNGtBZjRnUjFJNnBGIiwiZXhwIjoxNTkxMjA4NzkyLCJyZXN0X2FwaSI6dHJ1ZX0.jmnbSkwQiXhfzWVRQe2Bv4q6hR5B5xVC5EfqiDPhOCU" type="audio/ogg">
+                </audio>
+              </td>
+              
+            </tr>
+             
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
