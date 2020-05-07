@@ -1,12 +1,12 @@
 var express = require("express");
 var request = require('request');
 var list_call = express.Router();
-
+var config_stringee = require('../config/stringee');
 list_call.get("/", function (req, res) {
 	const options = {
-		url: 'https://api.stringee.com/v1/call/log',
+		url: config_stringee.call_log_url,
 		headers: {
-			'X-STRINGEE-AUTH': 'eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTS1dpNGpRbDZpcXpNeXp5VjVrV1lDNGtBZjRnUjFJNnBGLTE1ODg2MTY3OTIiLCJpc3MiOiJTS1dpNGpRbDZpcXpNeXp5VjVrV1lDNGtBZjRnUjFJNnBGIiwiZXhwIjoxNTkxMjA4NzkyLCJyZXN0X2FwaSI6dHJ1ZX0.jmnbSkwQiXhfzWVRQe2Bv4q6hR5B5xVC5EfqiDPhOCU'
+			'X-STRINGEE-AUTH': config_stringee["X-STRINGEE-AUTH"]
 		}
 	}
 	request.get(options, function (err, response, body) {
@@ -18,7 +18,7 @@ list_call.get("/", function (req, res) {
 			return res.status(400).send({ error: "error" });
 		}
 	})
-	
+
 });
 
 module.exports = list_call;

@@ -1,4 +1,4 @@
 module.exports = {
     'secret': 'nodeauthsecret',
-    'database': 'mongodb://kienpt:bjUUK#ifJyRY5_4@ds333248.mlab.com:33248/stringee-test'
+    'database': 'mongodb://localhost:27017/call_center'
   };
